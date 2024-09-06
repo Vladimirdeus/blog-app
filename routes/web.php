@@ -16,3 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/ayuda', function () {
+    return "hola prro";
+});
+
+ 
+
+Route::get('users/{id}/{id2?}', function ($id,$id2 = null) {
+    if ($id2) {
+        return "Hola $id y $id2"; 
+    }
+        return "Hola $id "; 
+});
