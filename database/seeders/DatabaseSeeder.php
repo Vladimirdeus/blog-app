@@ -16,13 +16,13 @@ class DatabaseSeeder extends Seeder
     {
 
         $user = new User();
-        $user->name = "vladimir";
-        $user->email = "vladimir";
-        $user->password = "vladimir@asdasdas.com";
+        $user->name = "Vladimir";
+        $user->email = "vladimir@asdasdas.com";
+        $user->password = "1233";
         $user->save();
     
         // \App\Models\User::factory(10)->create();
 
-        User::factory(10)->create();
+        User::factory(100)->create();
     }
 }

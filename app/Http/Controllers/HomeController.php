@@ -24,13 +24,14 @@ class HomeController extends Controller
     }
     function mostrarTodo( ) {
      
-        $post = User::all(); 
+        $post = User::orderBy('name', 'asc')->paginate(); 
         return view("post.saludo",['post' =>$post]);
         
     }
 
     function mostra($value) {
         $post = User::find($value);
+ 
         return view("post.mostra",['value'=>$post]);
 
         
@@ -40,17 +41,24 @@ class HomeController extends Controller
         return view("post.crear");
         
     }
+
     function agregar(Request $request) {
  
-        User::create(['name' => $request->name, 'email' => $request->email, 'password' => bcrypt($request->password)]);
+        User::create($request->all());
 
         return redirect("mostrarTodo");
     }
-    function actualizar(Request $request) {
+    function update(Request $request) {
         $model = User::find($request->id);
         $model->update(['name' => $request->name,'email' => $request->email, 'password' => bcrypt($request->password)]);
          return redirect("mostrarTodo");
         
+    }
+    function eliminar($value) {
+
+        $model = User::find($value);
+        $model->delete();
+         return redirect("mostrarTodo");
     }
     
         

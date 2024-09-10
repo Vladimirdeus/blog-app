@@ -18,12 +18,18 @@
     </header>
     <main>
         <form method="POST" action="crear">
+            @method("POST")
+            @csrf
              
             <div class="mb-3">
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" class="form-control" id="name" name="name" />
+                </div>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Slug</label>
+                    <input type="text" class="form-control" id="name" name="slug" />
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>

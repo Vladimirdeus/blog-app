@@ -24,8 +24,9 @@
         </header>
         <main>
             <div class="container">
-                <form method="POST" action="actualizar">
+                <form method="POST" action="{{route('mostrar.actualizar')}}">
                     @csrf
+                    @method("PUT")
                     
                     <div class="mb-3 row">
                         <label
