@@ -3,6 +3,8 @@
 use App\Http\Controllers\HomeController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,33 +20,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/mostrarTodo',[HomeController::class,"mostrarTodo"]);
+Route::get('/ayuda', [HomeController::class,"index"]);
+Route::get('/inicio', HomeController::class);
 
-Route::get('/ayuda', function () {
-    return "hola prro";
-});
+Route::get('/post',[PostController::class,"index"]);
 
-Route::get("hola/{id}/{id2}",[HomeController::class,"index"]);
- 
-Route::get('prueba', function () {
-    $post = Post::create(['titulo' => 'DesdeASDASDASDdasdASD', 'contenido' => 'Desde modelo 2']);
+Route::get('/users/{id}/{id2}',[HomeController::class,"saludar"]);
 
-    return $post;
-    
-});
-Route::get('prueba2/{id}', function ($id) {
-    $post = Post::find($id);
-    return $post;
-    
-});
-Route::get('prueba3/{id}', function ($id) {
-    $post = Post::find($id);
-    $post->update(["contenido"=>"Vladimir"]);
-    return $post;
-    
-});
-Route::get('prueba4', function ( ) {
-    $modelos = Post::all();
-    return $modelos;
-    
-});
- 
+Route::get('/mostrar/{id}',[HomeController::class,"mostra"]);
+Route::get('/crear',[HomeController::class,"crear"]);
+Route::put('/mostrar/actualizar',[HomeController::class,"update"])->name("mostrar.actualizar");
+Route::post('/crear',[HomeController::class,"agregar"]);
+Route::delete("/mostrarTodo/{id}",[HomeController::class,"eliminar"]);
+
+// Route::get('users/{id}/{id2?}', function ($id,$id2 = null) {
+//     if ($id2) {
+//         return "Hola $id y $id2"; 
+//     }
+//         return "Hola $id "; 
+// });
